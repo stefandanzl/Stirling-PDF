@@ -33,6 +33,9 @@ ENV DOCKER_ENABLE_SECURITY=false \
     FAT_DOCKER=true \
     INSTALL_BOOK_AND_ADVANCED_HTML_OPS=true
 
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+    echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+    apk add calibre
 
 # JDK for app
 RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/main" | tee -a /etc/apk/repositories && \
@@ -80,7 +83,7 @@ RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/main" | tee -a /et
     chown -R stirlingpdfuser:stirlingpdfgroup $HOME /scripts /usr/share/fonts/opentype/noto /configs /customFiles /pipeline && \
     chown stirlingpdfuser:stirlingpdfgroup /app.jar
 
-RUN apk add calibre
+
 
 EXPOSE 8080/tcp
 
